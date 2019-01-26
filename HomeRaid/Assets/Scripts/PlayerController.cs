@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-	private Rigidbody _rb;
+	private Rigidbody _rigidbody;
 	public float ForwardMovement = 25f;
 	public float RotationSpeed = 4f;
 
 	// Start is called before the first frame update
 	public void Start()
 	{
-		_rb = GetComponent<Rigidbody>();
+		_rigidbody = GetComponent<Rigidbody>();
 	}
 
 	// Update is called once per frame
@@ -41,10 +41,10 @@ public class PlayerController : MonoBehaviour
 	}
 
 	private void MoveAlongForwardAxis(float forwardForceToAdd)
-		=> _rb.AddRelativeForce(0, forwardForceToAdd, 0);
+		=> _rigidbody.AddRelativeForce(0, forwardForceToAdd, 0);
 
 	private void StopMoving()
-		=> _rb.velocity = Vector3.zero;
+		=> _rigidbody.velocity = Vector3.zero;
 
 	private void ProcessRotationInput()
 	{
@@ -67,10 +67,10 @@ public class PlayerController : MonoBehaviour
 
 	private void RotateForwardAxis(float torqueToAdd)
 	{
-		_rb.freezeRotation = false;
-		_rb.AddRelativeTorque(0, 0, torqueToAdd);
+		_rigidbody.freezeRotation = false;
+		_rigidbody.AddRelativeTorque(0, 0, torqueToAdd);
 	}
 
 	private void StopRotating()
-		=> _rb.freezeRotation = true;
+		=> _rigidbody.freezeRotation = true;
 }

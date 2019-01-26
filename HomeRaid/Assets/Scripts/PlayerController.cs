@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-	private Rigidbody _rb;
-	public float ForwardMovement = 25f;
+	private Rigidbody _rigidBody;
+	public float ForwardMovement = 100f;
 	public float RotationSpeed = 4f;
+	public float PushStrength = 10.0f;
 
 	// Start is called before the first frame update
 	public void Start()
 	{
-		_rb = GetComponent<Rigidbody>();
+		_rigidBody = GetComponent<Rigidbody>();
 	}
 
 	// Update is called once per frame
@@ -41,10 +42,10 @@ public class PlayerController : MonoBehaviour
 	}
 
 	private void MoveAlongForwardAxis(float forwardForceToAdd)
-		=> _rb.AddRelativeForce(0, forwardForceToAdd, 0);
+		=> _rigidBody.AddRelativeForce(0, 0, forwardForceToAdd);
 
 	private void StopMoving()
-		=> _rb.velocity = Vector3.zero;
+		=> _rigidBody.velocity = Vector3.zero;
 
 	private void ProcessRotationInput()
 	{
@@ -67,10 +68,29 @@ public class PlayerController : MonoBehaviour
 
 	private void RotateForwardAxis(float torqueToAdd)
 	{
-		_rb.freezeRotation = false;
-		_rb.AddRelativeTorque(0, 0, torqueToAdd);
+		_rigidBody.freezeRotation = false;
+		_rigidBody.AddRelativeTorque(0, torqueToAdd, 0);
 	}
 
 	private void StopRotating()
-		=> _rb.freezeRotation = true;
+		=> _rigidBody.freezeRotation = true;
+
+	public void OnControllerColliderHit(ControllerColliderHit hit)
+	{
+		var otherBody = hit.collider.attachedRigidbody;
+
+		if (otherBody == null || otherBody.isKinematic)
+		{
+			return;
+		}
+
+		if (hit.moveDirection.y < -0.3f)
+		{
+			return;
+		}
+
+		var pushDir = new Vector3(hit.moveDirection.x, 0.0f, hit.moveDirection.z);
+
+		otherBody.velocity = pushDir * PushStrength;
+	}
 }

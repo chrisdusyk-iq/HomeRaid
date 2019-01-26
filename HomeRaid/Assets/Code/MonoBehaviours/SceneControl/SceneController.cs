@@ -1,20 +1,37 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-	private IEnumerable<string> _sceneList = Enumerable.Empty<string>();
+	public event Action BeforeSceneLoad;
+
+	public event Action AfterSceneLoad;
+
+	private string[] _sceneList;
+
+	private int _currentSceneIndex = 0;
 
 	// Start is called before the first frame update
-	private void Start()
+	private IEnumerator Start()
 	{
 		// Create static list of scenes
-		_sceneList = new List<string>
+		_sceneList = new string[]
 		{
-			"Scene1"
+			"SampleScene"
 		};
+
+		yield return StartCoroutine(LoadSceneAndSetActive(_sceneList[_currentSceneIndex]));
+	}
+
+	private IEnumerator LoadSceneAndSetActive(string sceneName)
+	{
+		yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+		Scene newlyLoadedScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);
+		SceneManager.SetActiveScene(newlyLoadedScene);
 	}
 
 	// Update is called once per frame

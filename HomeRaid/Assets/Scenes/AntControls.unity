@@ -277,7 +277,6 @@ GameObject:
   - component: {fileID: 989695718}
   - component: {fileID: 989695719}
   - component: {fileID: 989695713}
-  - component: {fileID: 989695720}
   - component: {fileID: 989695714}
   m_Layer: 0
   m_Name: AntCapsule
@@ -405,18 +404,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ForwardMovement: 25
   RotationSpeed: 4
---- !u!114 &989695720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 989695712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d5a871e5364aad4983d2ef8e79e8e54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1262873153
 GameObject:
   m_ObjectHideFlags: 0

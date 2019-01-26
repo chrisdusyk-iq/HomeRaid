@@ -21,7 +21,8 @@ public class SceneController : MonoBehaviour
 		// Create static list of scenes
 		_sceneList = new string[]
 		{
-			"SampleScene"
+			"AntControls",
+			"GameOver"
 		};
 
 		yield return StartCoroutine(LoadSceneAndSetActive(_sceneList[_currentSceneIndex]));
@@ -32,6 +33,12 @@ public class SceneController : MonoBehaviour
 		yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
 		Scene newlyLoadedScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);
 		SceneManager.SetActiveScene(newlyLoadedScene);
+	}
+
+	public void ProgressScene()
+	{
+		_currentSceneIndex += 1;
+		StartCoroutine(LoadSceneAndSetActive(_sceneList[_currentSceneIndex]));
 	}
 
 	// Update is called once per frame

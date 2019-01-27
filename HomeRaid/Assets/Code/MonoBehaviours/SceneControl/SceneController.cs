@@ -22,6 +22,7 @@ public class SceneController : MonoBehaviour
 		_sceneList = new string[]
 		{
 			"Level1",
+			"Level2",
 			"GameOver"
 		};
 

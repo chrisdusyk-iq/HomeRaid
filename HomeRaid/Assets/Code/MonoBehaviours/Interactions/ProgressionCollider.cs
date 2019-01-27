@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HouseCollider : MonoBehaviour
+public class ProgressionCollider : MonoBehaviour
 {
 	private SceneController sceneController;
 

@@ -35,10 +35,12 @@ public class SceneController : MonoBehaviour
 		SceneManager.SetActiveScene(newlyLoadedScene);
 	}
 
-	public void ProgressScene()
+	public IEnumerable ProgressScene()
 	{
+		yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+
 		_currentSceneIndex += 1;
-		StartCoroutine(LoadSceneAndSetActive(_sceneList[_currentSceneIndex]));
+		yield return StartCoroutine(LoadSceneAndSetActive(_sceneList[_currentSceneIndex]));
 	}
 
 	// Update is called once per frame

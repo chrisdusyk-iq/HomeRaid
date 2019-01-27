@@ -16,7 +16,7 @@ public class ReactionCollectionEditor : EditorWithSubEditors<ReactionEditor, Rea
 
 	private const float dropAreaHeight = 50f;
 	private const float controlSpacing = 5f;
-	private const string reactionsPropName = "Reactions";
+	private const string reactionsPropName = "reactions";
 
 
 	private readonly float verticalSpacing = EditorGUIUtility.standardVerticalSpacing;

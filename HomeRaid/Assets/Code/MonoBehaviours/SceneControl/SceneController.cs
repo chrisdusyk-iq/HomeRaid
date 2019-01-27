@@ -26,22 +26,23 @@ public class SceneController : MonoBehaviour
 			"GameOver"
 		};
 
-		yield return StartCoroutine(LoadSceneAndSetActive(_sceneList[_currentSceneIndex]));
+		yield return StartCoroutine(LoadSceneAndSetActive(null, _sceneList[_currentSceneIndex]));
 	}
 
-	private IEnumerator LoadSceneAndSetActive(string sceneName)
+	private IEnumerator LoadSceneAndSetActive(string previousSceneName, string currentSceneName)
 	{
-		yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+		if (previousSceneName != null)
+			yield return SceneManager.UnloadSceneAsync(previousSceneName);
+
+		yield return SceneManager.LoadSceneAsync(currentSceneName, LoadSceneMode.Additive);
 		Scene newlyLoadedScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);
-		SceneManager.SetActiveScene(newlyLoadedScene);
+		yield return SceneManager.SetActiveScene(newlyLoadedScene);
 	}
 
-	public IEnumerable ProgressScene()
+	public void ProgressScene()
 	{
-		yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-
+		StartCoroutine(LoadSceneAndSetActive(_sceneList[_currentSceneIndex], _sceneList[_currentSceneIndex + 1]));
 		_currentSceneIndex += 1;
-		yield return StartCoroutine(LoadSceneAndSetActive(_sceneList[_currentSceneIndex]));
 	}
 
 	// Update is called once per frame

@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 public class SceneReaction : Reaction
 {
-	public string sceneName;
-
 	private SceneController _sceneController;
 
 	protected override void SpecificInit() => _sceneController = FindObjectOfType<SceneController>();

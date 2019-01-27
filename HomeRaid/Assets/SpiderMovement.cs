@@ -3,8 +3,8 @@
 public class SpiderMovement : MonoBehaviour
 {
     public float speed = 1.0f;
-    public float jumpSpeed = 1.0f;
-    public float gravity = 10.0f;
+    public float jumpSpeed = 20.0f;
+    public float gravity = 20.0f;
     Vector3 direction = Vector3.zero;
     CharacterController controller;
     // Start is called before the first frame update

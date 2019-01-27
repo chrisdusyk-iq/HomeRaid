@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	private Rigidbody _rigidBody;
-	public float ForwardMovement = 100f;
-	public float RotationSpeed = 4f;
+	public float ForwardMovement = 600f;
+	public float RotationSpeed = 10f;
 	public float PushStrength = 10.0f;
 
 	// Start is called before the first frame update
@@ -24,56 +24,25 @@ public class PlayerController : MonoBehaviour
 
 	private void ProcessForwardMotionInput()
 	{
-		var isMovingAlongForwardAxis = false;
-
 		if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
-		{
-			isMovingAlongForwardAxis = true;
 			MoveAlongForwardAxis(ForwardMovement * Time.deltaTime);
-		}
 		if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
-		{
-			isMovingAlongForwardAxis = true;
 			MoveAlongForwardAxis(-ForwardMovement * Time.deltaTime);
-		}
-
-		if (!isMovingAlongForwardAxis)
-			StopMoving();
 	}
 
 	private void MoveAlongForwardAxis(float forwardForceToAdd)
 		=> _rigidBody.AddRelativeForce(0, 0, forwardForceToAdd);
 
-	private void StopMoving()
-		=> _rigidBody.velocity = Vector3.zero;
-
 	private void ProcessRotationInput()
 	{
-		var isRotating = false;
-
 		if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
-		{
-			isRotating = true;
-			RotateForwardAxis(RotationSpeed * Time.deltaTime);
-		}
-		if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-		{
-			isRotating = true;
 			RotateForwardAxis(-RotationSpeed * Time.deltaTime);
-		}
-
-		if (!isRotating)
-			StopRotating();
+		if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+			RotateForwardAxis(RotationSpeed * Time.deltaTime);
 	}
 
 	private void RotateForwardAxis(float torqueToAdd)
-	{
-		_rigidBody.freezeRotation = false;
-		_rigidBody.AddRelativeTorque(0, torqueToAdd, 0);
-	}
-
-	private void StopRotating()
-		=> _rigidBody.freezeRotation = true;
+		=> _rigidBody.AddRelativeTorque(0, torqueToAdd, 0);
 
 	public void OnControllerColliderHit(ControllerColliderHit hit)
 	{

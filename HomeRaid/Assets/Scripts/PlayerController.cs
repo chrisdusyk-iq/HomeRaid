@@ -49,31 +49,14 @@ public class PlayerController : MonoBehaviour
 
 	private void ProcessRotationInput()
 	{
-		var isRotating = false;
-
 		if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
-		{
-			isRotating = true;
 			RotateForwardAxis(RotationSpeed * Time.deltaTime);
-		}
 		if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-		{
-			isRotating = true;
 			RotateForwardAxis(-RotationSpeed * Time.deltaTime);
-		}
-
-		if (!isRotating)
-			StopRotating();
 	}
 
 	private void RotateForwardAxis(float torqueToAdd)
-	{
-		_rigidBody.freezeRotation = false;
-		_rigidBody.AddRelativeTorque(0, torqueToAdd, 0);
-	}
-
-	private void StopRotating()
-		=> _rigidBody.freezeRotation = true;
+		=> _rigidBody.AddRelativeTorque(0, torqueToAdd, 0);
 
 	public void OnControllerColliderHit(ControllerColliderHit hit)
 	{

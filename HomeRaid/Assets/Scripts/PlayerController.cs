@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
 	private Rigidbody _rigidBody;
 	public float ForwardMovement = 100f;
-	public float RotationSpeed = 4f;
+	public float RotationSpeed = 10f;
 	public float PushStrength = 10.0f;
 
 	// Start is called before the first frame update

@@ -50,9 +50,9 @@ public class PlayerController : MonoBehaviour
 	private void ProcessRotationInput()
 	{
 		if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
-			RotateForwardAxis(RotationSpeed * Time.deltaTime);
-		if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
 			RotateForwardAxis(-RotationSpeed * Time.deltaTime);
+		if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+			RotateForwardAxis(RotationSpeed * Time.deltaTime);
 	}
 
 	private void RotateForwardAxis(float torqueToAdd)

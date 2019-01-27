@@ -12,8 +12,5 @@ public class SceneReaction : Reaction
 
 	protected override void SpecificInit() => _sceneController = FindObjectOfType<SceneController>();
 
-	protected override void ImmediateReaction()
-	{
-		_sceneController.ProgressScene();
-	}
+	protected override void ImmediateReaction() => _sceneController.ProgressScene();
 }

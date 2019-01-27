@@ -21,7 +21,7 @@ public class SceneController : MonoBehaviour
 		// Create static list of scenes
 		_sceneList = new string[]
 		{
-			"AntControls",
+			"Level1",
 			"GameOver"
 		};
 

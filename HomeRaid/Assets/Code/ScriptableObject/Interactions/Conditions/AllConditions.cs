@@ -2,39 +2,39 @@
 
 public class AllConditions : ScriptableObject
 {
-	public Condition[] Conditions;
+	public Condition[] conditions;
 
-	private static AllConditions _instance;
+	private static AllConditions instance;
 
-	private const string _loadPath = "AllConditions";
+	private const string loadPath = "AllConditions";
 
 	public static AllConditions Instance
 	{
 		get
 		{
-			if (!_instance)
+			if (!instance)
 			{
-				_instance = FindObjectOfType<AllConditions>();
+				instance = FindObjectOfType<AllConditions>();
 			}
 
-			if (!_instance)
+			if (!instance)
 			{
-				_instance = Resources.Load<AllConditions>(_loadPath);
+				instance = Resources.Load<AllConditions>(loadPath);
 			}
 
-			if (!_instance)
+			if (!instance)
 			{
 				Debug.LogError("AllConditions has not been created yet.  Go to Assets > Create > AllConditions.");
 			}
 
-			return _instance;
+			return instance;
 		}
-		set { _instance = value; }
+		set { instance = value; }
 	}
 
 	public static bool CheckCondition(Condition requiredCondition)
 	{
-		Condition[] allConditions = Instance.Conditions;
+		Condition[] allConditions = Instance.conditions;
 		Condition globalCondition = null;
 
 		if (allConditions != null && allConditions[0] != null)

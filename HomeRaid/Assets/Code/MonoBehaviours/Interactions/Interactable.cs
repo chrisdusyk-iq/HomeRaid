@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-	public Transform InteractionLocation;
-	public ConditionCollection[] ConditionCollections = new ConditionCollection[0];
-	public ReactionCollection DefaultReactionCollection;
+	public Transform interactionLocation;
+	public ConditionCollection[] conditionCollections = new ConditionCollection[0];
+	public ReactionCollection defaultReactionCollection;
 
 	public void Interact()
 	{
-		foreach (var conditionCollection in ConditionCollections)
+		foreach (var conditionCollection in conditionCollections)
 		{
 			if (conditionCollection.CheckAndReact())
 				return;
 		}
 
-		DefaultReactionCollection.React();
+		defaultReactionCollection.React();
 	}
 }

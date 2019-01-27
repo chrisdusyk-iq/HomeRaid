@@ -15,9 +15,9 @@ public class ConditionCollectionEditor : EditorWithSubEditors<ConditionEditor, C
 
 	private const float conditionButtonWidth = 30f;
 	private const float collectionButtonWidth = 125f;
-	private const string conditionCollectionPropDescriptionName = "Description";
-	private const string conditionCollectionPropRequiredConditionsName = "RequiredConditions";
-	private const string conditionCollectionPropReactionCollectionName = "ReactionCollection";
+	private const string conditionCollectionPropDescriptionName = "description";
+	private const string conditionCollectionPropRequiredConditionsName = "requiredConditions";
+	private const string conditionCollectionPropReactionCollectionName = "reactionCollection";
 
 
 	private void OnEnable()
@@ -34,7 +34,7 @@ public class ConditionCollectionEditor : EditorWithSubEditors<ConditionEditor, C
 		conditionsProperty = serializedObject.FindProperty(conditionCollectionPropRequiredConditionsName);
 		reactionCollectionProperty = serializedObject.FindProperty(conditionCollectionPropReactionCollectionName);
 
-		CheckAndCreateSubEditors(conditionCollection.RequiredConditions);
+		CheckAndCreateSubEditors(conditionCollection.requiredConditions);
 	}
 
 
@@ -55,7 +55,7 @@ public class ConditionCollectionEditor : EditorWithSubEditors<ConditionEditor, C
 	{
 		serializedObject.Update();
 
-		CheckAndCreateSubEditors(conditionCollection.RequiredConditions);
+		CheckAndCreateSubEditors(conditionCollection.requiredConditions);
 
 		EditorGUILayout.BeginVertical(GUI.skin.box);
 		EditorGUI.indentLevel++;
@@ -124,9 +124,9 @@ public class ConditionCollectionEditor : EditorWithSubEditors<ConditionEditor, C
 	public static ConditionCollection CreateConditionCollection()
 	{
 		ConditionCollection newConditionCollection = CreateInstance<ConditionCollection>();
-		newConditionCollection.Description = "New condition collection";
-		newConditionCollection.RequiredConditions = new Condition[1];
-		newConditionCollection.RequiredConditions[0] = ConditionEditor.CreateCondition();
+		newConditionCollection.description = "New condition collection";
+		newConditionCollection.requiredConditions = new Condition[1];
+		newConditionCollection.requiredConditions[0] = ConditionEditor.CreateCondition();
 		return newConditionCollection;
 	}
 }

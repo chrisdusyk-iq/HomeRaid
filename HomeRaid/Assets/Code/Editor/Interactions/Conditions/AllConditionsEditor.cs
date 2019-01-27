@@ -34,8 +34,8 @@ public class AllConditionsEditor : Editor
 	{
 		allConditions = (AllConditions)target;
 
-		if (allConditions.Conditions == null)
-			allConditions.Conditions = new Condition[0];
+		if (allConditions.conditions == null)
+			allConditions.conditions = new Condition[0];
 
 		if (conditionEditors == null)
 		{
@@ -101,7 +101,7 @@ public class AllConditionsEditor : Editor
 
 	private void CreateEditors()
 	{
-		conditionEditors = new ConditionEditor[allConditions.Conditions.Length];
+		conditionEditors = new ConditionEditor[allConditions.conditions.Length];
 
 		for (int i = 0; i < conditionEditors.Length; i++)
 		{
@@ -122,7 +122,7 @@ public class AllConditionsEditor : Editor
 
 		AllConditions.Instance = instance;
 
-		instance.Conditions = new Condition[0];
+		instance.conditions = new Condition[0];
 	}
 
 
@@ -142,7 +142,7 @@ public class AllConditionsEditor : Editor
 		AssetDatabase.AddObjectToAsset(newCondition, AllConditions.Instance);
 		AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(newCondition));
 
-		ArrayUtility.Add(ref AllConditions.Instance.Conditions, newCondition);
+		ArrayUtility.Add(ref AllConditions.Instance.conditions, newCondition);
 
 		EditorUtility.SetDirty(AllConditions.Instance);
 
@@ -160,7 +160,7 @@ public class AllConditionsEditor : Editor
 
 		Undo.RecordObject(AllConditions.Instance, "Removing condition");
 
-		ArrayUtility.Remove(ref AllConditions.Instance.Conditions, condition);
+		ArrayUtility.Remove(ref AllConditions.Instance.conditions, condition);
 
 		DestroyImmediate(condition, true);
 		AssetDatabase.SaveAssets();
@@ -185,7 +185,7 @@ public class AllConditionsEditor : Editor
 
 	public static Condition TryGetConditionAt(int index)
 	{
-		Condition[] allConditions = AllConditions.Instance.Conditions;
+		Condition[] allConditions = AllConditions.Instance.conditions;
 
 		if (allConditions == null || allConditions[0] == null)
 			return null;
@@ -199,9 +199,9 @@ public class AllConditionsEditor : Editor
 
 	public static int TryGetConditionsLength()
 	{
-		if (AllConditions.Instance.Conditions == null)
+		if (AllConditions.Instance.conditions == null)
 			return 0;
 
-		return AllConditions.Instance.Conditions.Length;
+		return AllConditions.Instance.conditions.Length;
 	}
 }

@@ -22,7 +22,7 @@ public class InteractableEditor : EditorWithSubEditors<ConditionCollectionEditor
 		interactionLocationProperty = serializedObject.FindProperty(interactablePropInteractionLocationName);
 		defaultReactionCollectionProperty = serializedObject.FindProperty(interactablePropDefaultReactionCollectionName);
 
-		CheckAndCreateSubEditors(interactable.ConditionCollections);
+		CheckAndCreateSubEditors(interactable.conditionCollections);
 	}
 
 	private void OnDisable()
@@ -39,7 +39,7 @@ public class InteractableEditor : EditorWithSubEditors<ConditionCollectionEditor
 	{
 		serializedObject.Update();
 
-		CheckAndCreateSubEditors(interactable.ConditionCollections);
+		CheckAndCreateSubEditors(interactable.conditionCollections);
 
 		EditorGUILayout.PropertyField(interactionLocationProperty);
 

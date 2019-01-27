@@ -2,11 +2,11 @@
 
 public class ReactionCollection : MonoBehaviour
 {
-	public Reaction[] Reactions = new Reaction[0];
+	public Reaction[] reactions = new Reaction[0];
 
 	private void Start()
 	{
-		foreach (var reaction in Reactions)
+		foreach (var reaction in reactions)
 		{
 			reaction.Init();
 		}
@@ -14,7 +14,7 @@ public class ReactionCollection : MonoBehaviour
 
 	public void React()
 	{
-		foreach (var reaction in Reactions)
+		foreach (var reaction in reactions)
 		{
 			reaction.React(this);
 		}

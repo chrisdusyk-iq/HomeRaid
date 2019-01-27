@@ -28,7 +28,7 @@ public class ReactionCollectionEditor : EditorWithSubEditors<ReactionEditor, Rea
 
 		reactionsProperty = serializedObject.FindProperty(reactionsPropName);
 
-		CheckAndCreateSubEditors(reactionCollection.Reactions);
+		CheckAndCreateSubEditors(reactionCollection.reactions);
 
 		SetReactionNamesArray();
 	}
@@ -50,14 +50,14 @@ public class ReactionCollectionEditor : EditorWithSubEditors<ReactionEditor, Rea
 	{
 		serializedObject.Update();
 
-		CheckAndCreateSubEditors(reactionCollection.Reactions);
+		CheckAndCreateSubEditors(reactionCollection.reactions);
 
 		for (int i = 0; i < subEditors.Length; i++)
 		{
 			subEditors[i].OnInspectorGUI();
 		}
 
-		if (reactionCollection.Reactions.Length > 0)
+		if (reactionCollection.reactions.Length > 0)
 		{
 			EditorGUILayout.Space();
 			EditorGUILayout.Space();

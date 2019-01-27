@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class ConditionCollection : ScriptableObject
 {
-	public string Description;
-	public Condition[] RequiredConditions = new Condition[0];
-	public ReactionCollection ReactionCollection;
+	public string description;
+	public Condition[] requiredConditions = new Condition[0];
+	public ReactionCollection reactionCollection;
 
 
 	public bool CheckAndReact()
 	{
-		for (int i = 0; i < RequiredConditions.Length; i++)
+		for (int i = 0; i < requiredConditions.Length; i++)
 		{
-			if (!AllConditions.CheckCondition(RequiredConditions[i]))
+			if (!AllConditions.CheckCondition(requiredConditions[i]))
 				return false;
 		}
 
-		if (ReactionCollection)
-			ReactionCollection.React();
+		if (reactionCollection)
+			reactionCollection.React();
 
 		return true;
 	}
